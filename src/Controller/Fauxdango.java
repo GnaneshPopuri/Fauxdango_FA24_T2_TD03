@@ -12,6 +12,8 @@ public class Fauxdango {
     MenuChoice choiceMainRegister = menuMain.addMenuChoice("Register");
     MenuChoice choiceMainListAllMovies = menuMain.addMenuChoice("List All Movies");
     MenuChoice choiceMainListAllTheaters = menuMain.addMenuChoice("List All Theaters");
+    MenuChoice choiceMainListAllActors = menuMain.addMenuChoice("List All Actors");
+    MenuChoice choiceMainListAllShowings = menuMain.addMenuChoice("List All Showings");
     MenuChoice choiceMainExit = menuMain.getMenuChoiceQuit();
 
     public void demo() {
@@ -39,11 +41,17 @@ public class Fauxdango {
                 for (Theater theater : Datastore.getTheaters()) {
                     System.out.println(theater.toString());
                 }
+            } else if (chosen == choiceMainListAllActors) {
+                for (Actor actor : Datastore.getActors()) {
+                    System.out.println(actor.toString());
+                }
+            } else if (chosen == choiceMainListAllShowings) {
+                for (Showing showing : Datastore.getShowings()) {
+                    System.out.println(showing.toString());
+                }
             } else if (chosen == choiceMainExit) {
                 System.out.println("Goodbye");
             }
-
         }
-
     }
 }

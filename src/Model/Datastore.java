@@ -3,16 +3,13 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Model.Rating.PG;
-import static Model.Rating.R;
-
 public class Datastore {
     private static List<Advertisement> advertisements;
     private static List<Theater> theaters;
     private static List<Movie> movies;
     private static List<Actor> actors;
     private static List<Auditorium> auditoriums;
-//    private static List<Showing> showings;
+    private static List<Showing> showings;
 
 
     public static void clearData() {
@@ -57,6 +54,21 @@ public class Datastore {
     }
 
     private static void initShowings() {
+        System.out.println("Initializing showings");
+
+        Movie topGun = getMovieById(1);
+        Movie escapeFromNewYork = getMovieById(4);
+        Movie halloween = getMovieById(3);
+        Movie spinalTap = getMovieById(2);
+
+        showings.add(new Showing("Top Gun", "13:00"));
+        showings.add(new Showing("Escape from New York", "16:00"));
+        showings.add(new Showing("Halloween", "18:00"));
+        showings.add(new Showing("Top Gun", "17:30"));
+        showings.add(new Showing("Escape from New York", "19:15"));
+        showings.add(new Showing("Spiral Tap", "10:00"));
+        showings.add(new Showing("Spiral Tap", "12:45"));
+        showings.add(new Showing("Halloween", "23:00"));
     }
 
 
@@ -101,25 +113,29 @@ public class Datastore {
 
         Movie movie;
 
-        movie = new Movie(1L, "Top Gun", "Fighter pilot Maverick flies a jet.  Goose dies.", PG, "1986-05-16", (1 * 60 + 50));
+        movie = new Movie(1L, "Top Gun", "Fighter pilot Maverick flies a jet.  Goose dies.", Rating.PG, "1986-05-16", (1 * 60 + 50));
         movie.addActor(1);
         movie.addActor(2);
         movies.add(movie);
 
-        movie = new Movie(2L, "This Is Spinal Tap", "Spinal Tap, is chronicled by film director Marty DiBergi", R, "1984-03-02", 84);
+        movie = new Movie(2L, "This Is Spinal Tap", "Spinal Tap, is chronicled by film director Marty DiBergi", Rating.R, "1984-03-02", 84);
         movie.addActor(3);
         movie.addActor(4);
         movies.add(movie);
 
-        movie = new Movie(3L, "Halloween", "Michael Meyers kills people", R, "1978-10-05", 91);
+        movie = new Movie(3L, "Halloween", "Michael Meyers kills people", Rating.R, "1978-10-05", 91);
         movie.addActor(5);
         movie.addActor(6);
         movies.add(movie);
 
-        movie = new Movie(4L, "Escape from New York", "Snake Plissken rescues the president", R, "1981-07-10", 99);
+        movie = new Movie(4L, "Escape from New York", "Snake Plissken rescues the president", Rating.R, "1981-07-10", 99);
         movie.addActor(6);
         movie.addActor(7);
         movies.add(movie);
+    }
+
+    public static List<Showing> getShowings() {
+        return showings;
     }
 
     public static List<Advertisement> getAllAdvertisements() {
@@ -137,6 +153,7 @@ public class Datastore {
     public static List<Theater> getTheaters() {
         return theaters;
     }
+
 
     public static Movie getMovieById(long id) {
         for (Movie movie : movies) {
@@ -172,8 +189,11 @@ public class Datastore {
     }
 
     public static Showing getShowingById(long id) {
-
-
+        for (Showing showing : showings) {
+            if (showing.getId == id) {
+                return showing;
+            }
+        }
         return null;
     }
 }

@@ -1,26 +1,30 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Auditorium extends DataStoreObj {
     private int auditoriumNumber;
-//    private List<Showing> showings;
+    private List<Showing> showings;
 
-    public Auditorium(int auditoriumNumber) { // add this as a parameter after the task showings is completed: List<Showing> showings
+    public Auditorium(int auditoriumNumber) {
         this.auditoriumNumber = auditoriumNumber;
-//        this.showings = showings;
+        this.showings = new ArrayList<>();
     }
 
-    /* public List<Showing> getShowings() {
-        return showings;
-    } */
+    public void addShowing(long showingId) {
+        Showing showing = Datastore.getShowingById(showingId);
+        if (showing != null) {
+            this.showings.add(showing);
+        }
+    }
 
-    /* public void addShowing(Showing showing) {
-        this.showings.add(showing);
-    } */
+    public List<Showing> getShowings() {
+        return showings;
+    }
 
     @Override
     public String toString() {
-        return String.valueOf(auditoriumNumber);
+        return "Auditorium Number: " + auditoriumNumber;
     }
 }
