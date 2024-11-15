@@ -3,6 +3,9 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Model.Rating.PG;
+import static Model.Rating.R;
+
 public class Datastore {
     private static List<Advertisement> advertisements;
     private static List<Theater> theaters;
@@ -74,18 +77,17 @@ public class Datastore {
 
         Movie movie;
 
-        movie = new Movie(1L, "Top Gun", "Fighter pilot Maverick flies a jet.  Goose dies.", "1986-05-16", (1 * 60 + 50));
+        movie = new Movie(1L, "Top Gun", "Fighter pilot Maverick flies a jet.  Goose dies.", PG, "1986-05-16", (1 * 60 + 50));
         movies.add(movie);
 
-        movie = new Movie(2L, "This Is Spinal Tap", "Spinal Tap, is chronicled by film director Marty DiBergi", "1984-03-02", 84);
+        movie = new Movie(2L, "This Is Spinal Tap", "Spinal Tap, is chronicled by film director Marty DiBergi", R, "1984-03-02", 84);
         movies.add(movie);
 
-        movie = new Movie(3L, "Halloween", "Michael Meyers kills people", "1978-10-05", 91);
+        movie = new Movie(3L, "Halloween", "Michael Meyers kills people", R, "1978-10-05", 91);
         movies.add(movie);
 
-        movie = new Movie(4L, "Escape from New York", "Snake Plissken rescues the president", "1981-07-10", 99);
+        movie = new Movie(4L, "Escape from New York", "Snake Plissken rescues the president", R, "1981-07-10", 99);
         movies.add(movie);
-
     }
 
     public static List<Advertisement> getAllAdvertisements() {
