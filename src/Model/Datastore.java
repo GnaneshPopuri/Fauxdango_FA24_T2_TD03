@@ -12,7 +12,7 @@ public class Datastore {
     private static List<Movie> movies;
     private static List<Actor> actors;
     private static List<Auditorium> auditoriums;
-    private static List<Showing> showings;
+//    private static List<Showing> showings;
 
 
     public static void clearData() {
@@ -20,6 +20,7 @@ public class Datastore {
         advertisements = new ArrayList<>();
         theaters = new ArrayList<>();
         movies = new ArrayList<>();
+        auditoriums = new ArrayList<>();
     }
 
     public static void populateData() {
@@ -42,6 +43,17 @@ public class Datastore {
     }
 
     private static void initAuditoriums() {
+        System.out.println("Initializing auditoriums");
+
+        Auditorium auditorium1 = new Auditorium(1);
+        Auditorium auditorium2 = new Auditorium(2);
+        Auditorium auditorium3 = new Auditorium(3);
+        Auditorium auditorium4 = new Auditorium(4);
+
+        auditoriums.add(auditorium1);
+        auditoriums.add(auditorium2);
+        auditoriums.add(auditorium3);
+        auditoriums.add(auditorium4);
     }
 
     private static void initShowings() {
@@ -53,9 +65,13 @@ public class Datastore {
         Theater theater;
 
         theater = new Theater(1L, "AMC Neshaminy 24", "660 Neshaminy Mall", "Bensalem", "PA", "19020", "(215) 396-8050", "https://www.amctheatres.com/movie-theatres/philadelphia/amc-neshaminy-24");
+        theater.addAuditorium(1);
+        theater.addAuditorium(2);
         theaters.add(theater);
 
         theater = new Theater(2L, "Regal UA Oxford Valley", "403 Middletown Blvd", "Langhorne", "PA", "19047", "(844) 462-7342", "https://www.regmovies.com › theatres › regal-ua-oxford-valley");
+        theater.addAuditorium(3);
+        theater.addAuditorium(4);
         theaters.add(theater);
     }
 
@@ -141,8 +157,11 @@ public class Datastore {
     }
 
     public static Auditorium getAuditoriumById(long id) {
-
-
+        for (Auditorium auditorium : auditoriums) {
+            if (auditorium.getPrimaryKey() == id) {
+                return auditorium;
+            }
+        }
         return null;
     }
 
@@ -157,5 +176,4 @@ public class Datastore {
 
         return null;
     }
-
 }
