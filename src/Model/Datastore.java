@@ -70,6 +70,14 @@ public class Datastore {
 
     private static void initActors() {
         System.out.println("Initializing actors");
+
+        actors.add(new Actor("Tom","Cruise","(1963-07-03)"));
+        actors.add(new Actor("Kelly","McGillis","(1957-07-09)"));
+        actors.add(new Actor("Michael","McKean","(1947-10-17)"));
+        actors.add(new Actor("Christopher","Guest","(1948-02-05)"));
+        actors.add(new Actor("Jaimie Lee","Curtis","(1958-11-22)"));
+        actors.add(new Actor("Donald","Pleasence","(1919-10-05)"));
+        actors.add(new Actor("Kurt","Russell","(1951-03-17)"));
     }
 
     private static void initMovies() {
@@ -78,15 +86,23 @@ public class Datastore {
         Movie movie;
 
         movie = new Movie(1L, "Top Gun", "Fighter pilot Maverick flies a jet.  Goose dies.", PG, "1986-05-16", (1 * 60 + 50));
+        movie.addActor(1);
+        movie.addActor(2);
         movies.add(movie);
 
         movie = new Movie(2L, "This Is Spinal Tap", "Spinal Tap, is chronicled by film director Marty DiBergi", R, "1984-03-02", 84);
+        movie.addActor(3);
+        movie.addActor(4);
         movies.add(movie);
 
         movie = new Movie(3L, "Halloween", "Michael Meyers kills people", R, "1978-10-05", 91);
+        movie.addActor(5);
+        movie.addActor(6);
         movies.add(movie);
 
         movie = new Movie(4L, "Escape from New York", "Snake Plissken rescues the president", R, "1981-07-10", 99);
+        movie.addActor(6);
+        movie.addActor(7);
         movies.add(movie);
     }
 
