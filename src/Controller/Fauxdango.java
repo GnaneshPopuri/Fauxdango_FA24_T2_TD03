@@ -19,6 +19,7 @@ public class Fauxdango {
     MenuChoice choiceMainListAllShowings = menuMain.addMenuChoice("List All Showings");
     MenuChoice choiceMainSearchTheatersByName = menuMain.addMenuChoice("Search Theaters by Name");
     MenuChoice choiceMainSearchMoviesByTitle = menuMain.addMenuChoice("Search Movies By Title");
+    MenuChoice choiceMainSearchActorsByName = menuMain.addMenuChoice("Search Actors by Name");
     MenuChoice choiceMainExit = menuMain.getMenuChoiceQuit();
 
     public void demo() {
@@ -64,7 +65,17 @@ public class Fauxdango {
                 // Print moves
                 searchResults.forEach(movie -> System.out.println(movie.toString()));
                 searchResults.forEach(theater -> System.out.println(theater.toString()));
-            } else if (chosen == choiceMainExit) {
+            } else if (chosen == choiceMainSearchActorsByName) {
+                String searchText = IOHelper.readNonBlankStringFromKeyboard("Enter part of the actor's name");
+                List<Actor> searchResults = Datastore.searchActorsByName(searchText);
+                if (searchResults.isEmpty()) {
+                    System.out.println("No actors found matching: " + searchText);
+                } else { searchResults.forEach(actor -> System.out.println(actor.toString()));
+                }
+            }
+
+
+            else if (chosen == choiceMainExit) {
                 System.out.println("Goodbye");
             }
         }

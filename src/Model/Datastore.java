@@ -216,4 +216,17 @@ public class Datastore {
         return searchResults;
 
     }
+    public static List<Actor> searchActorsByName(String text) {
+        List<Actor> searchResults = new ArrayList<>();
+        String searchTextLower = text.toLowerCase();
+
+
+        for (Actor actor : actors) {
+            String fullName = actor.getFirstName() + " " + actor.getLastName();
+            if (fullName.toLowerCase().contains(searchTextLower)) {
+                searchResults.add(actor);
+            }
+        }
+        return searchResults;
+    }
 }
