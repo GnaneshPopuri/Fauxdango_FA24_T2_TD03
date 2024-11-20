@@ -31,6 +31,10 @@ public class Theater extends DataStoreObj {
         this.auditoriums = new ArrayList<>();
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public void addAuditorium(long id) {
         Auditorium auditorium = Datastore.getAuditoriumById(id);
     }
@@ -41,6 +45,18 @@ public class Theater extends DataStoreObj {
 
     public String toString() {
         return String.format("%s (%s, %s, %s %s) [%s]", this.name, this.streetAddress, this.city, this.state, this.zipCode, this.phoneNumber);
+    }
+    private static List<Movie> movies = new ArrayList<>();
+    public static List<Movie> searchMoviesByTitle(String text) {
+        List<Movie> result = new ArrayList<>();
+
+        for (Movie movie : movies) {
+            if (movie.getTitle().toLowerCase().contains(text.toLowerCase())) {
+                result.add(movie);
+            }
+        }
+
+        return result;
     }
 
 }

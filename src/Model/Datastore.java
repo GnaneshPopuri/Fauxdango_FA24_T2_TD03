@@ -196,4 +196,25 @@ public class Datastore {
         }
         return null;
     }
+
+    public static List<Theater> searchTheatersByName(String text) {
+        List<Theater> searchResults = new ArrayList<>();
+        String searchTextLower = text.toLowerCase();
+        for (Theater theater : theaters) {
+            if (theater.getName().toLowerCase().contains(searchTextLower)) {
+                searchResults.add(theater);
+            }
+        }
+        return searchResults;
+    }
+    public static List<Movie> searchMoviesByTitle(String text) {
+        List<Movie> searchResults = new ArrayList<>();
+        for (Movie movie : movies) {
+            if (movie.getTitle().toLowerCase().contains(text.toLowerCase())) {
+                searchResults.add(movie);
+            }
+        }
+        return searchResults;
+
+    }
 }
