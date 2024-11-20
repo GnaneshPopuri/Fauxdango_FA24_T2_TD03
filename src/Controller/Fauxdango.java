@@ -20,6 +20,7 @@ public class Fauxdango {
     MenuChoice choiceMainSearchTheatersByName = menuMain.addMenuChoice("Search Theaters by Name");
     MenuChoice choiceMainSearchMoviesByTitle = menuMain.addMenuChoice("Search Movies By Title");
     MenuChoice choiceMainSearchActorsByName = menuMain.addMenuChoice("Search Actors by Name");
+    MenuChoice choiceMainSearchTheatersByZipcode = menuMain.addMenuChoice("Search Theaters by Zipcode");
     MenuChoice choiceMainExit = menuMain.getMenuChoiceQuit();
 
     public void demo() {
@@ -58,6 +59,18 @@ public class Fauxdango {
             } else if (chosen == choiceMainSearchTheatersByName) {
                 String searchText = IOHelper.readNonBlankStringFromKeyboard("Enter part of the name");
                 List<Theater> searchResults = Datastore.searchTheatersByName(searchText);
+
+            } else if (chosen == choiceMainSearchTheatersByZipcode) {
+                // Prompt user for the zipcode input
+                String zipcode = IOHelper.readNonBlankStringFromKeyboard("Enter the zipcode or part of the zipcode");
+                List<Theater> searchResults = Datastore.searchTheatersByZipcode(zipcode);
+                if (searchResults.isEmpty()) {
+                    System.out.println("No theaters found matching zipcode: " + zipcode);
+                } else {
+                    searchResults.forEach(theater -> System.out.println(theater.toString()));
+                }
+
+
 
             } else if (chosen == choiceMainSearchMoviesByTitle) {
                 String searchText = IOHelper.readNonBlankStringFromKeyboard("Enter part of the title");

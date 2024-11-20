@@ -87,6 +87,18 @@ public class Datastore {
         theaters.add(theater);
     }
 
+    public static List<Theater> searchTheatersByZipcode(String text) {
+        List<Theater> searchResults = new ArrayList<>();
+        for (Theater theater : theaters) {
+
+            if (theater.getZipcode().equals(text)) {
+                searchResults.add(theater);
+            }
+        }
+        return searchResults;
+    }
+
+
     private static void initAdvertisements() {
         System.out.println("Initializing advertisements");
         advertisements.add(new Advertisement("Drink Pepsi"));
