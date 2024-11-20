@@ -196,7 +196,6 @@ public class Datastore {
         }
         return null;
     }
-
     public static List<Theater> searchTheatersByName(String text) {
         List<Theater> searchResults = new ArrayList<>();
         String searchTextLower = text.toLowerCase();

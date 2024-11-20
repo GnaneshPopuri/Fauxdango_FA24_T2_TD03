@@ -42,9 +42,7 @@ public class Theater extends DataStoreObj {
     public List<Auditorium> getAuditoriums() {
         return auditoriums;
     }
-    public String getName() {
-        return name;
-    }
+
     public String getZipcode() {
         return zipCode;
     }
