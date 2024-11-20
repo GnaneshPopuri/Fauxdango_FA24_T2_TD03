@@ -42,6 +42,16 @@ public class Theater extends DataStoreObj {
     public List<Auditorium> getAuditoriums() {
         return auditoriums;
     }
+    public String getName() {
+        return name;
+    }
+    public String getZipcode() {
+        return zipCode;
+    }
+
+
+
+
 
     public String toString() {
         return String.format("%s (%s, %s, %s %s) [%s]", this.name, this.streetAddress, this.city, this.state, this.zipCode, this.phoneNumber);

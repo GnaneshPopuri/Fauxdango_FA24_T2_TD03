@@ -1,14 +1,11 @@
 package Controller;
 
 import Model.*;
-import Util.IOHelper;
 import View.ConsoleDisplay.AdvertisementDisplay;
 import View.ConsoleDisplay.UserDisplay;
 import edu.psu.consolemenu.Menu;
 import edu.psu.consolemenu.MenuChoice;
 import edu.psu.consolemenu.MenuDisplay;
-
-import java.util.List;
 
 public class Fauxdango {
     Menu menuMain = new Menu("Fauxdango");
@@ -17,8 +14,6 @@ public class Fauxdango {
     MenuChoice choiceMainListAllTheaters = menuMain.addMenuChoice("List All Theaters");
     MenuChoice choiceMainListAllActors = menuMain.addMenuChoice("List All Actors");
     MenuChoice choiceMainListAllShowings = menuMain.addMenuChoice("List All Showings");
-    MenuChoice choiceMainSearchTheatersByName = menuMain.addMenuChoice("Search Theaters by Name");
-    MenuChoice choiceMainSearchMoviesByTitle = menuMain.addMenuChoice("Search Movies By Title");
     MenuChoice choiceMainExit = menuMain.getMenuChoiceQuit();
 
     public void demo() {
@@ -46,7 +41,6 @@ public class Fauxdango {
                 for (Theater theater : Datastore.getTheaters()) {
                     System.out.println(theater.toString());
                 }
-
             } else if (chosen == choiceMainListAllActors) {
                 for (Actor actor : Datastore.getActors()) {
                     System.out.println(actor.toString());
@@ -55,16 +49,6 @@ public class Fauxdango {
                 for (Showing showing : Datastore.getShowings()) {
                     System.out.println(showing.toString());
                 }
-            }  else if (chosen == choiceMainSearchTheatersByName) {
-                String searchText = IOHelper.readNonBlankStringFromKeyboard("Enter part of the name");
-                List<Theater> searchResults = Datastore.searchTheatersByName(searchText);
-
-                searchResults.forEach(theater -> System.out.println(theater.toString()));
-            } else if (chosen == choiceMainSearchMoviesByTitle) {
-                String searchText = IOHelper.readNonBlankStringFromKeyboard("Enter part of the title");
-                List<Movie> searchResults = Datastore.searchMoviesByTitle(searchText);
-
-                searchResults.forEach(movie -> System.out.println(movie.toString()));
             } else if (chosen == choiceMainExit) {
                 System.out.println("Goodbye");
             }
