@@ -58,14 +58,13 @@ public class Fauxdango {
             }  else if (chosen == choiceMainSearchTheatersByName) {
                 String searchText = IOHelper.readNonBlankStringFromKeyboard("Enter part of the name");
                 List<Theater> searchResults = Datastore.searchTheatersByName(searchText);
-                // Print theaters
+
                 searchResults.forEach(theater -> System.out.println(theater.toString()));
             } else if (chosen == choiceMainSearchMoviesByTitle) {
                 String searchText = IOHelper.readNonBlankStringFromKeyboard("Enter part of the title");
                 List<Movie> searchResults = Datastore.searchMoviesByTitle(searchText);
-                // Print moves
-                searchResults.forEach(movie -> System.out.println(movie.toString()));
 
+                searchResults.forEach(movie -> System.out.println(movie.toString()));
             } else if (chosen == choiceMainExit) {
                 System.out.println("Goodbye");
             }
