@@ -31,9 +31,13 @@ public class Actor extends DataStoreObj {
     public String getLastName() {
         return lastName;
     }
+    public String getName() {
+        return firstName + " " + lastName;
+    }
+
 
     @Override
     public String toString() {
-        return firstName + " " + lastName + " (" + birthday + ")";
+        return getName() + " (" + birthday + ")";
     }
 }
