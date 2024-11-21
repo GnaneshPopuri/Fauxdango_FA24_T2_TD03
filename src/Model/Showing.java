@@ -32,4 +32,8 @@ public class Showing extends DataStoreObj {
     public String toString() {
         return "Movie: " + movie + ", Start Time: " + startTime.toString();
     }
+
+    public long getId() {
+        return getId;
+    }
 }
