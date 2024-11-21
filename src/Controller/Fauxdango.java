@@ -76,13 +76,18 @@ public class Fauxdango {
             } else if (chosen == choiceSearchTheatersByName) {
                 System.out.print("Enter part of the name: ");
                 String theaterName = scanner.nextLine().toLowerCase();
-                boolean found = false;
-                for (Theater theater : Datastore.searchTheatersByName(theaterName)) {
-                    System.out.println(theater.toString());
-                    found = true;
-                }
-                if (!found) {
-                    System.out.println("No theaters found matching: " + theaterName);
+
+                if (theaterName == null || theaterName.trim().isEmpty()) {
+                    System.out.println("Theater name cannot be null or empty.");
+                } else {
+                    boolean found = false;
+                    for (Theater theater : Datastore.searchTheatersByName(theaterName)) {
+                        System.out.println(theater.toString());
+                        found = true;
+                    }
+                    if (!found) {
+                        System.out.println("No theaters found matching: " + theaterName);
+                    }
                 }
             } else if (chosen == choiceSearchTheatersByZipcode) {
                 System.out.print("Enter zipcode: ");
@@ -98,16 +103,19 @@ public class Fauxdango {
             } else if (chosen == choiceSearchMoviesByTitle) {
                 System.out.print("Enter part of the movie title: ");
                 String movieTitle = scanner.nextLine().toLowerCase();
-                boolean found = false;
-                for (Movie movie : Datastore.searchMoviesByTitle(movieTitle)) {
-                    System.out.println(movie.toString());
-                    found = true;
+
+                if (movieTitle == null || movieTitle.trim().isEmpty()) {
+                    System.out.println("Movie title cannot be null or empty.");
+                } else {
+                    boolean found = false;
+                    for (Movie movie : Datastore.searchMoviesByTitle(movieTitle)) {
+                        System.out.println(movie.toString());
+                        found = true;
+                    }
+                    if (!found) {
+                        System.out.println("No movies found matching: " + movieTitle);
+                    }
                 }
-                if (!found) {
-                    System.out.println("No movies found matching: " + movieTitle);
-                }
-            } else if (chosen == choiceMainExit) {
-                System.out.println("Goodbye");
             }
         }
     }
