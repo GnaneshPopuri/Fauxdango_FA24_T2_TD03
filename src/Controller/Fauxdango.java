@@ -46,7 +46,7 @@ public class Fauxdango {
             if (chosen == choiceMainRegister) {
                 user = UserDisplay.registerUser();
                 System.out.println();
-                System.out.println("Welcome, " + user.toString());
+                System.out.println("Welcome, " + user);
             } else if (chosen == choiceMainListAllMovies) {
                 for (Movie movie : Datastore.getMovies()) {
                     System.out.println(movie.toString());

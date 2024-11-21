@@ -12,8 +12,6 @@ public class Main {
         System.out.println("Gnanesh Popuri (gjp5376@psu.edu");
         System.out.println("Joshua Waldron (jsw5796@psu.edu");
 
-
-
         Fauxdango f = new Fauxdango();
         f.demo();
     }

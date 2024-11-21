@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class AdvertisementBank {
-    private final List<Advertisement> ads = Datastore.getAllAdvertisements();
+    private List<Advertisement> ads = Datastore.getAllAdvertisements();
     int currentAdIndex = 0;
 
     public void addAd(Advertisement ad) {

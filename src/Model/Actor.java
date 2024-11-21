@@ -5,9 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Actor extends DataStoreObj {
-    private String firstName;
-    private String lastName;
-    private LocalDate birthday;
+    private final String firstName;
+    private final String lastName;
+    private final LocalDate birthday;
 
     public Actor(Long id, String firstName, String lastName, String birthday) {
         super(id);

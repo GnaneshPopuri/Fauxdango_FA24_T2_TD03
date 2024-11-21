@@ -3,13 +3,17 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Model.Rating.PG;
+import static Model.Rating.R;
+
+
 public class Datastore {
-    private static List<Advertisement> advertisements = new ArrayList<>();
-    private static List<Theater> theaters = new ArrayList<>();
-    private static List<Movie> movies = new ArrayList<>();
-    private static List<Actor> actors = new ArrayList<>();
-    private static List<Auditorium> auditoriums = new ArrayList<>();
-    private static List<Showing> showings = new ArrayList<>();
+    private static final List<Advertisement> advertisements = new ArrayList<>();
+    private static final List<Theater> theaters = new ArrayList<>();
+    private static final List<Movie> movies = new ArrayList<>();
+    private static final List<Actor> actors = new ArrayList<>();
+    private static final List<Auditorium> auditoriums = new ArrayList<>();
+    private static final List<Showing> showings = new ArrayList<>();
 
     public static void clearData() {
         System.out.println("Clearing 'database'");
@@ -57,14 +61,14 @@ public class Datastore {
     private static void initShowings() {
         System.out.println("Initializing showings");
 
-        showings.add(new Showing("Top Gun", "13:00"));
-        showings.add(new Showing("Escape from New York", "16:00"));
-        showings.add(new Showing("Halloween", "18:00"));
-        showings.add(new Showing("Top Gun", "17:30"));
-        showings.add(new Showing("Escape from New York", "19:15"));
-        showings.add(new Showing("Spinal Tap", "10:00"));
-        showings.add(new Showing("Spinal Tap", "12:45"));
-        showings.add(new Showing("Halloween", "23:00"));
+        showings.add(new Showing("Top Gun", "ACTION, DRAMA", 110, PG, 1986, "13:00"));
+        showings.add(new Showing("Escape from New York", "ACTION", 99, R, 1981, "16:00"));
+        showings.add(new Showing("Halloween", "HORROR", 91, R, 1978, "18:00"));
+        showings.add(new Showing("Top Gun", "ACTION, DRAMA", 110, PG, 1986, "17:30"));
+        showings.add(new Showing("Escape from New York", "ACTION", 99, R, 1981, "19:15"));
+        showings.add(new Showing("Spinal Tap", "COMEDY, DOCUMENTARY", 84, R, 1984, "10:00"));
+        showings.add(new Showing("Spinal Tap", "COMEDY, DOCUMENTARY", 84, R, 1984, "12:45"));
+        showings.add(new Showing("Halloween", "HORROR", 91, R, 1978, "23:00"));
     }
 
     private static void initTheaters() {
@@ -103,28 +107,27 @@ public class Datastore {
         actors.add(new Actor(7L, "Kurt", "Russell", "1951-03-17"));
     }
 
-
     private static void initMovies() {
         System.out.println("Initializing movies");
 
         Movie movie;
 
-        movie = new Movie(1L, "Top Gun", "Fighter pilot Maverick flies a jet. Goose dies.", Rating.PG, "1986-05-16", (1 * 60 + 50));
+        movie = new Movie(1L, "Top Gun", "Fighter pilot Maverick flies a jet. Goose dies.", PG, "1986-05-16", (60 + 50));
         movie.addActor(1);
         movie.addActor(2);
         movies.add(movie);
 
-        movie = new Movie(2L, "This Is Spinal Tap", "Spinal Tap, is chronicled by film director Marty DiBergi", Rating.R, "1984-03-02", 84);
+        movie = new Movie(2L, "This Is Spinal Tap", "Spinal Tap, is chronicled by film director Marty DiBergi", R, "1984-03-02", 84);
         movie.addActor(3);
         movie.addActor(4);
         movies.add(movie);
 
-        movie = new Movie(3L, "Halloween", "Michael Meyers kills people", Rating.R, "1978-10-05", 91);
+        movie = new Movie(3L, "Halloween", "Michael Meyers kills people", R, "1978-10-05", 91);
         movie.addActor(5);
         movie.addActor(6);
         movies.add(movie);
 
-        movie = new Movie(4L, "Escape from New York", "Snake Plissken rescues the president", Rating.R, "1981-07-10", 99);
+        movie = new Movie(4L, "Escape from New York", "Snake Plissken rescues the president", R, "1981-07-10", 99);
         movie.addActor(6);
         movie.addActor(7);
         movies.add(movie);
@@ -179,19 +182,23 @@ public class Datastore {
     }
 
     public static Theater getTheaterById(long id) {
-
-
+        for (Theater theater : theaters) {
+            if (theater.getPrimaryKey() == id) {
+                return theater;
+            }
+        }
         return null;
     }
 
     public static Showing getShowingById(long id) {
         for (Showing showing : showings) {
-            if (showing.getId == id) {
+            if (showing.getId() == id) {
                 return showing;
             }
         }
         return null;
     }
+
     public static List<Theater> searchTheatersByName(String text) {
         List<Theater> searchResults = new ArrayList<>();
         String searchTextLower = text.toLowerCase();

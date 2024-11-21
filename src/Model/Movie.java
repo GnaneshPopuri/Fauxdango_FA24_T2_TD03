@@ -58,7 +58,6 @@ public class Movie extends DataStoreObj {
             throw new IllegalArgumentException("Actor with ID " + actorId + " not found.");
         }
     }
-
     @Override
     public String toString() {
         int runningTimeMinutes = (int) this.getRunningTime().getSeconds() / 60;
