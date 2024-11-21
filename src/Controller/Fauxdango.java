@@ -7,6 +7,7 @@ import edu.psu.consolemenu.Menu;
 import edu.psu.consolemenu.MenuChoice;
 import edu.psu.consolemenu.MenuDisplay;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Fauxdango {
@@ -63,52 +64,41 @@ public class Fauxdango {
                     System.out.println(showing.toString());
                 }
             } else if (chosen == choiceSearchActorsByName) {
-                System.out.print("Enter part of the name: : ");
-                String actorName = scanner.nextLine().toLowerCase();
-                boolean found = false;
-                for (Actor actor : Datastore.searchActorsByName(actorName)) {
-                    System.out.println(actor.toString());
-                    found = true;
-                }
-                if (!found) {
-                    System.out.println("No actors found matching: " + actorName);
-                }
+                searchEntities("actor's name", scanner, Datastore::searchActorsByName);
             } else if (chosen == choiceSearchTheatersByName) {
-                System.out.print("Enter part of the name: ");
-                String theaterName = scanner.nextLine().toLowerCase();
-                boolean found = false;
-                for (Theater theater : Datastore.searchTheatersByName(theaterName)) {
-                    System.out.println(theater.toString());
-                    found = true;
-                }
-                if (!found) {
-                    System.out.println("No theaters found matching: " + theaterName);
-                }
+                searchEntities("theater's name", scanner, Datastore::searchTheatersByName);
             } else if (chosen == choiceSearchTheatersByZipcode) {
-                System.out.print("Enter zipcode: ");
-                String zipcode = scanner.nextLine();
-                boolean found = false;
-                for (Theater theater : Datastore.searchTheatersByZipcode(zipcode)) {
-                    System.out.println(theater.toString());
-                    found = true;
-                }
-                if (!found) {
-                    System.out.println("No theaters found in zipcode: " + zipcode);
-                }
+                searchEntities("zipcode", scanner, Datastore::searchTheatersByZipcode);
             } else if (chosen == choiceSearchMoviesByTitle) {
-                System.out.print("Enter part of the movie title: ");
-                String movieTitle = scanner.nextLine().toLowerCase();
-                boolean found = false;
-                for (Movie movie : Datastore.searchMoviesByTitle(movieTitle)) {
-                    System.out.println(movie.toString());
-                    found = true;
-                }
-                if (!found) {
-                    System.out.println("No movies found matching: " + movieTitle);
-                }
+                searchEntities("movie title", scanner, Datastore::searchMoviesByTitle);
             } else if (chosen == choiceMainExit) {
                 System.out.println("Goodbye");
             }
         }
+    }
+
+    private void searchEntities(String searchType, Scanner scanner, SearchFunction searchFunction) {
+        System.out.print("Enter part of the " + searchType + ": ");
+        String searchTerm = scanner.nextLine().trim();
+        while (searchTerm.isEmpty()) {
+            System.out.println("Cannot be blank");
+            System.out.print("Enter " + searchType + ": ");
+            searchTerm = scanner.nextLine().trim();
+        }
+
+        boolean found = false;
+        for (Object result : searchFunction.search(searchTerm)) {
+            System.out.println(result.toString());
+            found = true;
+        }
+
+        if (!found) {
+            System.out.println("No results found.");
+        }
+    }
+
+    @FunctionalInterface
+    interface SearchFunction {
+        List<?> search(String searchTerm);
     }
 }
