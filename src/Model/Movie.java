@@ -53,13 +53,12 @@ public class Movie extends DataStoreObj {
     public void addActor(long actorId) {
         Actor actor = Datastore.getActorById(actorId);
         if (actor != null) {
-            actors.add(actor); // Add the Actor to the list
+            actors.add(actor);
         } else {
             throw new IllegalArgumentException("Actor with ID " + actorId + " not found.");
         }
     }
 
-    // Override toString method
     @Override
     public String toString() {
         int runningTimeMinutes = (int) this.getRunningTime().getSeconds() / 60;

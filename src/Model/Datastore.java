@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Datastore {
-    private static List<Advertisement> advertisements;
-    private static List<Theater> theaters;
-    private static List<Movie> movies;
-    private static List<Actor> actors;
-    private static List<Auditorium> auditoriums;
-    private static List<Showing> showings;
-
+    private static List<Advertisement> advertisements = new ArrayList<>();
+    private static List<Theater> theaters = new ArrayList<>();
+    private static List<Movie> movies = new ArrayList<>();
+    private static List<Actor> actors = new ArrayList<>();
+    private static List<Auditorium> auditoriums = new ArrayList<>();
+    private static List<Showing> showings = new ArrayList<>();
 
     public static void clearData() {
         System.out.println("Clearing 'database'");
-        advertisements = new ArrayList<>();
-        theaters = new ArrayList<>();
-        movies = new ArrayList<>();
-        auditoriums = new ArrayList<>();
+        advertisements.clear();
+        theaters.clear();
+        movies.clear();
+        actors.clear();
+        auditoriums.clear();
+        showings.clear();
     }
 
     public static void populateData() {
@@ -56,24 +57,19 @@ public class Datastore {
     private static void initShowings() {
         System.out.println("Initializing showings");
 
-        Movie topGun = getMovieById(1);
-        Movie escapeFromNewYork = getMovieById(4);
-        Movie halloween = getMovieById(3);
-        Movie spinalTap = getMovieById(2);
-
         showings.add(new Showing("Top Gun", "13:00"));
         showings.add(new Showing("Escape from New York", "16:00"));
         showings.add(new Showing("Halloween", "18:00"));
         showings.add(new Showing("Top Gun", "17:30"));
         showings.add(new Showing("Escape from New York", "19:15"));
-        showings.add(new Showing("Spiral Tap", "10:00"));
-        showings.add(new Showing("Spiral Tap", "12:45"));
+        showings.add(new Showing("Spinal Tap", "10:00"));
+        showings.add(new Showing("Spinal Tap", "12:45"));
         showings.add(new Showing("Halloween", "23:00"));
     }
 
-
     private static void initTheaters() {
         System.out.println("Initializing theaters");
+
         Theater theater;
 
         theater = new Theater(1L, "AMC Neshaminy 24", "660 Neshaminy Mall", "Bensalem", "PA", "19020", "(215) 396-8050", "https://www.amctheatres.com/movie-theatres/philadelphia/amc-neshaminy-24");
@@ -81,23 +77,11 @@ public class Datastore {
         theater.addAuditorium(2);
         theaters.add(theater);
 
-        theater = new Theater(2L, "Regal UA Oxford Valley", "403 Middletown Blvd", "Langhorne", "PA", "19047", "(844) 462-7342", "https://www.regmovies.com › theatres › regal-ua-oxford-valley");
+        theater = new Theater(2L, "Regal UA Oxford Valley", "403 Middletown Blvd", "Langhorne", "PA", "19047", "(844) 462-7342", "https://www.regmovies.com");
         theater.addAuditorium(3);
         theater.addAuditorium(4);
         theaters.add(theater);
     }
-
-    public static List<Theater> searchTheatersByZipcode(String text) {
-        List<Theater> searchResults = new ArrayList<>();
-        for (Theater theater : theaters) {
-
-            if (theater.getZipcode().equals(text)) {
-                searchResults.add(theater);
-            }
-        }
-        return searchResults;
-    }
-
 
     private static void initAdvertisements() {
         System.out.println("Initializing advertisements");
@@ -107,25 +91,25 @@ public class Datastore {
         advertisements.add(new Advertisement("Watch NCIS"));
     }
 
-
     private static void initActors() {
         System.out.println("Initializing actors");
 
-        actors.add(new Actor("Tom","Cruise","(1963-07-03)"));
-        actors.add(new Actor("Kelly","McGillis","(1957-07-09)"));
-        actors.add(new Actor("Michael","McKean","(1947-10-17)"));
-        actors.add(new Actor("Christopher","Guest","(1948-02-05)"));
-        actors.add(new Actor("Jaimie Lee","Curtis","(1958-11-22)"));
-        actors.add(new Actor("Donald","Pleasence","(1919-10-05)"));
-        actors.add(new Actor("Kurt","Russell","(1951-03-17)"));
+        actors.add(new Actor(1L, "Tom", "Cruise", "1963-07-03"));
+        actors.add(new Actor(2L, "Kelly", "McGillis", "1957-07-09"));
+        actors.add(new Actor(3L, "Michael", "McKean", "1947-10-17"));
+        actors.add(new Actor(4L, "Christopher", "Guest", "1948-02-05"));
+        actors.add(new Actor(5L, "Jamie Lee", "Curtis", "1958-11-22"));
+        actors.add(new Actor(6L, "Donald", "Pleasence", "1919-10-05"));
+        actors.add(new Actor(7L, "Kurt", "Russell", "1951-03-17"));
     }
+
 
     private static void initMovies() {
         System.out.println("Initializing movies");
 
         Movie movie;
 
-        movie = new Movie(1L, "Top Gun", "Fighter pilot Maverick flies a jet.  Goose dies.", Rating.PG, "1986-05-16", (1 * 60 + 50));
+        movie = new Movie(1L, "Top Gun", "Fighter pilot Maverick flies a jet. Goose dies.", Rating.PG, "1986-05-16", (1 * 60 + 50));
         movie.addActor(1);
         movie.addActor(2);
         movies.add(movie);
@@ -237,6 +221,16 @@ public class Datastore {
             String fullName = actor.getFirstName() + " " + actor.getLastName();
             if (fullName.toLowerCase().contains(searchTextLower)) {
                 searchResults.add(actor);
+            }
+        }
+        return searchResults;
+    }
+
+    public static List<Theater> searchTheatersByZipcode(String text) {
+        List<Theater> searchResults = new ArrayList<>();
+        for (Theater theater : theaters) {
+            if (theater.getZipcode().equals(text)) {
+                searchResults.add(theater);
             }
         }
         return searchResults;

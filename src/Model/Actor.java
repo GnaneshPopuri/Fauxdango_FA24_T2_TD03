@@ -9,7 +9,8 @@ public class Actor extends DataStoreObj {
     private String lastName;
     private LocalDate birthday;
 
-    public Actor(String firstName, String lastName, String birthday) {
+    public Actor(Long id, String firstName, String lastName, String birthday) {
+        super(id);
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = convertToDate(birthday);
