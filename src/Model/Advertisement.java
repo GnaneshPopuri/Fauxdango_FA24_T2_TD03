@@ -1,8 +1,7 @@
 package Model;
 
 public class Advertisement extends DataStoreObj {
-    private int id;
-    private String text;
+    private final String text;
 
     public Advertisement(String text) {
         this.text = text;

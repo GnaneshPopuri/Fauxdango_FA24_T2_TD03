@@ -6,31 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Movie extends DataStoreObj {
-    private String title;
-    private String description;
-    private Rating rating;
-    private LocalDate releaseDate;
-    private Duration runningTime;
-    private List<Actor> actors;
-    private List<Genre> genres;
+    private final String title;
+    private final Rating rating;
+    private final LocalDate releaseDate;
+    private final Duration runningTime;
+    private final List<Actor> actors;
 
-    public Movie(String title, String description, Rating rating, String releaseDate, int runningTimeMinutes) {
-        this(null, title, description, rating, releaseDate, runningTimeMinutes);
-    }
-
-    public Movie(Long id, String title, String description, Rating rating, String releaseDate, int runningTimeMinutes) {
+    public Movie(Long id, String title, Rating rating, String releaseDate, int runningTimeMinutes) {
         super(id);
         this.title = title;
-        this.description = description;
         this.rating = rating;
         this.releaseDate = LocalDate.parse(releaseDate);
         this.runningTime = Duration.ofMinutes(runningTimeMinutes);
         this.actors = new ArrayList<>();
-        this.genres = new ArrayList<>();
-    }
-
-    public Rating getRating() {
-        return rating;
     }
 
     public Duration getRunningTime() {
@@ -43,10 +31,6 @@ public class Movie extends DataStoreObj {
 
     public List<Actor> getActors() {
         return actors;
-    }
-
-    public List<Genre> getGenres() {
-        return genres; // Getter for genres
     }
 
 

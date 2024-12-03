@@ -15,7 +15,7 @@ public class UserDisplay {
         user.setLastName(IOHelper.readNonBlankStringFromKeyboard("Enter last name"));
         user.setEmailAddress(IOHelper.readNonBlankStringFromKeyboard("Enter email address"));
 
-        logger.info("New user: " + user.toString());
+        logger.info("New user: " + user);
 
         return user;
     }

@@ -5,7 +5,7 @@ import Model.AdvertisementBank;
 
 
 public class AdvertisementDisplay {
-    private AdvertisementBank adBank;
+    private final AdvertisementBank adBank;
 
     public AdvertisementDisplay(AdvertisementBank adBank) {
         this.adBank = adBank;
@@ -18,9 +18,5 @@ public class AdvertisementDisplay {
 
     public void displayNextAd() {
         displayAd(adBank.getNextAd());
-    }
-
-    public void displayRandomAd() {
-        displayAd(adBank.getRandomAd());
     }
 }
