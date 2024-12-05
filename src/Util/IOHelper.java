@@ -18,11 +18,17 @@ public class IOHelper {
         return instance;
     }
 
-    public String readStringFromKeyboard(String prompt) {
+    public static String readStringFromKeyboard(String prompt) {
         System.out.print(prompt + ": ");
         return keyboard.nextLine();
     }
-
+    /**
+     * Reads a double from user input.
+     *
+     * @return the double value entered by the user
+     * @throws NumberFormatException if the user enters an invalid double
+     * @author Joshua Waldron (Jsw5796@psu.edu)
+     */
     public static double userInputDouble(String prompt) {
         Double parsedToDouble = null;
 

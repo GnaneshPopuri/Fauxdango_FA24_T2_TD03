@@ -7,44 +7,120 @@ import java.util.List;
 
 public class Movie extends DataStoreObj {
     private final String title;
+    private final String description;
     private final Rating rating;
     private final LocalDate releaseDate;
     private final Duration runningTime;
     private final List<Actor> actors;
+    private final List<Genre> genres;
 
-    public Movie(Long id, String title, Rating rating, String releaseDate, int runningTimeMinutes) {
-        super(id);
-        this.title = title;
-        this.rating = rating;
-        this.releaseDate = LocalDate.parse(releaseDate);
-        this.runningTime = Duration.ofMinutes(runningTimeMinutes);
-        this.actors = new ArrayList<>();
+    private Movie(Builder builder) {
+        super(builder.id);
+        this.title = builder.title;
+        this.description = builder.description;
+        this.rating = builder.rating;
+        this.releaseDate = builder.releaseDate;
+        this.runningTime = builder.runningTime;
+        this.actors = builder.actors;
+        this.genres = builder.genres;
+    }
+
+    // Getters
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
     public Duration getRunningTime() {
         return runningTime;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     public List<Actor> getActors() {
         return actors;
     }
 
-
-    public void addActor(long actorId) {
-        Actor actor = Datastore.getActorById(actorId);
-        if (actor != null) {
-            actors.add(actor);
-        } else {
-            throw new IllegalArgumentException("Actor with ID " + actorId + " not found.");
-        }
+    public List<Genre> getGenres() {
+        return genres;
     }
+
+    public void addActor(Actor actor) {
+        this.actors.add(actor);
+    }
+
+    public void addGenre(Genre genre) {
+        this.genres.add(genre);
+    }
+
     @Override
     public String toString() {
-        int runningTimeMinutes = (int) this.getRunningTime().getSeconds() / 60;
-        return String.format("%s (%s, %s) [%s min]", this.title, this.rating, this.releaseDate.getYear(), runningTimeMinutes);
+        int runningTimeMinutes = (int) this.getRunningTime().toMinutes();
+        return String.format("%s (%s, %d) [%s min]", this.title, this.rating, this.releaseDate.getYear(), runningTimeMinutes);
+    }
+
+    // Builder Class
+    public static class Builder {
+        private Long id;
+        private String title;
+        private String description;
+        private Rating rating;
+        private LocalDate releaseDate;
+        private Duration runningTime;
+        private final List<Actor> actors = new ArrayList<>();
+        private final List<Genre> genres = new ArrayList<>();
+
+        public Builder withId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withTitle(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public Builder withDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder withRating(Rating rating) {
+            this.rating = rating;
+            return this;
+        }
+
+        public Builder withReleaseDate(String releaseDate) {
+            this.releaseDate = LocalDate.parse(releaseDate);
+            return this;
+        }
+
+        public Builder withRunningTimeMinutes(int runningTimeMinutes) {
+            this.runningTime = Duration.ofMinutes(runningTimeMinutes);
+            return this;
+        }
+
+        public Builder addActor(Actor actor) {
+            this.actors.add(actor);
+            return this;
+        }
+
+        public Builder addGenre(Genre genre) {
+            this.genres.add(genre);
+            return this;
+        }
+
+        public Movie build() {
+            return new Movie(this);
+        }
     }
 }
