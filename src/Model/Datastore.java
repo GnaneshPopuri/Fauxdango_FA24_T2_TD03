@@ -117,8 +117,8 @@ public class Datastore {
                 .withRating(Rating.PG)
                 .withReleaseDate("1986-05-16")
                 .withRunningTimeMinutes(110)
-                .addActor(getActorById(1L))
-                .addActor(getActorById(2L))
+                .addActor(getActorById(1L)) // Tom Cruise
+                .addActor(getActorById(2L)) // Kelly McGillis
                 .addGenre(Genre.ACTION)
                 .addGenre(Genre.DRAMA)
                 .build();
@@ -126,19 +126,45 @@ public class Datastore {
         Movie spinalTap = new Movie.Builder()
                 .withId(2L)
                 .withTitle("This Is Spinal Tap")
-                .withDescription("Spinal Tap, is chronicled by film director Marty DiBergi.")
+                .withDescription("Spinal Tap is chronicled by film director Marty DiBergi.")
                 .withRating(Rating.R)
                 .withReleaseDate("1984-03-02")
                 .withRunningTimeMinutes(84)
-                .addActor(getActorById(3L))
-                .addActor(getActorById(4L))
+                .addActor(getActorById(3L)) // Michael McKean
+                .addActor(getActorById(4L)) // Christopher Guest
                 .addGenre(Genre.COMEDY)
                 .addGenre(Genre.DOCUMENTARY)
                 .build();
 
-        // Add the movies to the datastore
+        Movie halloween = new Movie.Builder()
+                .withId(3L)
+                .withTitle("Halloween")
+                .withDescription("Michael Myers terrorizes a small town.")
+                .withRating(Rating.R)
+                .withReleaseDate("1978-10-25")
+                .withRunningTimeMinutes(91)
+                .addActor(getActorById(5L)) // Jamie Lee Curtis
+                .addActor(getActorById(6L)) // Donald Pleasence
+                .addGenre(Genre.HORROR)
+                .build();
+
+        Movie escapeFromNewYork = new Movie.Builder()
+                .withId(4L)
+                .withTitle("Escape from New York")
+                .withDescription("Snake Plissken must rescue the president.")
+                .withRating(Rating.R)
+                .withReleaseDate("1981-07-10")
+                .withRunningTimeMinutes(99)
+                .addActor(getActorById(6L)) // Donald Pleasence
+                .addActor(getActorById(7L)) // Kurt Russell
+                .addGenre(Genre.ACTION)
+                .build();
+
+        // Add all movies to the datastore
         movies.add(topGun);
         movies.add(spinalTap);
+        movies.add(halloween);
+        movies.add(escapeFromNewYork);
     }
 
 
