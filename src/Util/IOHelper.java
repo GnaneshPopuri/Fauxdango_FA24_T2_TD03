@@ -22,20 +22,4 @@ public class IOHelper {
         System.out.print(prompt + ": ");
         return keyboard.nextLine();
     }
-
-    public String readNonBlankStringFromKeyboard(String prompt) {
-        String nonblankString;
-
-        while (true) {
-            nonblankString = readStringFromKeyboard(prompt);
-            if (nonblankString.trim().isEmpty()) {
-                System.out.println();
-                System.out.println("Cannot be blank");
-            } else {
-                break;
-            }
-        }
-
-        return nonblankString;
-    }
 }
