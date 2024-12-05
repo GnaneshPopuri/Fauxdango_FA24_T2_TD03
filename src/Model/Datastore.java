@@ -3,13 +3,17 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Model.Rating.PG;
+import static Model.Rating.R;
+
+
 public class Datastore {
-    private static List<Advertisement> advertisements = new ArrayList<>();
-    private static List<Theater> theaters = new ArrayList<>();
-    private static List<Movie> movies = new ArrayList<>();
-    private static List<Actor> actors = new ArrayList<>();
-    private static List<Auditorium> auditoriums = new ArrayList<>();
-    private static List<Showing> showings = new ArrayList<>();
+    private static final List<Advertisement> advertisements = new ArrayList<>();
+    private static final List<Theater> theaters = new ArrayList<>();
+    private static final List<Movie> movies = new ArrayList<>();
+    private static final List<Actor> actors = new ArrayList<>();
+    private static final List<Auditorium> auditoriums = new ArrayList<>();
+    private static final List<Showing> showings = new ArrayList<>();
 
     public static void clearData() {
         System.out.println("Clearing 'database'");
@@ -43,23 +47,28 @@ public class Datastore {
     private static void initAuditoriums() {
         System.out.println("Initializing auditoriums");
 
-        auditoriums.add(new Auditorium(1));
-        auditoriums.add(new Auditorium(2));
-        auditoriums.add(new Auditorium(3));
-        auditoriums.add(new Auditorium(4));
+        Auditorium auditorium1 = new Auditorium(1);
+        Auditorium auditorium2 = new Auditorium(2);
+        Auditorium auditorium3 = new Auditorium(3);
+        Auditorium auditorium4 = new Auditorium(4);
+
+        auditoriums.add(auditorium1);
+        auditoriums.add(auditorium2);
+        auditoriums.add(auditorium3);
+        auditoriums.add(auditorium4);
     }
 
     private static void initShowings() {
         System.out.println("Initializing showings");
 
-        showings.add(new Showing(1, "Top Gun", "AMC Neshaminy 24", 1, Rating.PG, 110, "13:00"));
-        showings.add(new Showing(2, "Escape from New York", "Regal UA Oxford Valley", 2, Rating.R, 99, "16:00"));
-        showings.add(new Showing(3, "Halloween", "AMC Neshaminy 24", 1, Rating.R, 91, "18:00"));
-        showings.add(new Showing(4, "Top Gun", "AMC Neshaminy 24", 1, Rating.PG, 110, "17:30"));
-        showings.add(new Showing(5, "Escape from New York", "Regal UA Oxford Valley", 2, Rating.R, 99, "19:15"));
-        showings.add(new Showing(6, "This Is Spinal Tap", "AMC Neshaminy 24", 1, Rating.R, 84, "10:00"));
-        showings.add(new Showing(7, "This Is Spinal Tap", "AMC Neshaminy 24", 1, Rating.R, 84, "12:45"));
-        showings.add(new Showing(8, "Halloween", "AMC Neshaminy 24", 1, Rating.R, 91, "23:00"));
+        showings.add(new Showing(1,"Top Gun", "ACTION, DRAMA", 110, PG, 1986, "13:00"));
+        showings.add(new Showing(2,"Escape from New York", "ACTION", 99, R, 1981, "16:00"));
+        showings.add(new Showing(3,"Halloween", "HORROR", 91, R, 1978, "18:00"));
+        showings.add(new Showing(4,"Top Gun", "ACTION, DRAMA", 110, PG, 1986, "17:30"));
+        showings.add(new Showing(5,"Escape from New York", "ACTION", 99, R, 1981, "19:15"));
+        showings.add(new Showing(6,"Spinal Tap", "COMEDY, DOCUMENTARY", 84, R, 1984, "10:00"));
+        showings.add(new Showing(7,"Spinal Tap", "COMEDY, DOCUMENTARY", 84, R, 1984, "12:45"));
+        showings.add(new Showing(8,"Halloween", "HORROR", 91, R, 1978, "23:00"));
     }
 
     private static void initTheaters() {
@@ -67,20 +76,19 @@ public class Datastore {
 
         Theater theater;
 
-        theater = new Theater(1L, "AMC Neshaminy 24", "660 Neshaminy Mall", "Bensalem", "PA", "19020", "(215) 396-8050", "https://www.amctheatres.com/movie-theatres/philadelphia/amc-neshaminy-24");
-        theater.addAuditorium(1);
-        theater.addAuditorium(2);
+        theater = new Theater(1L, "AMC Neshaminy 24", "660 Neshaminy Mall", "Bensalem", "PA", "19020", "(215) 396-8050");
+        theater.addAuditorium();
+        theater.addAuditorium();
         theaters.add(theater);
 
-        theater = new Theater(2L, "Regal UA Oxford Valley", "403 Middletown Blvd", "Langhorne", "PA", "19047", "(844) 462-7342", "https://www.regmovies.com");
-        theater.addAuditorium(3);
-        theater.addAuditorium(4);
+        theater = new Theater(2L, "Regal UA Oxford Valley", "403 Middletown Blvd", "Langhorne", "PA", "19047", "(844) 462-7342");
+        theater.addAuditorium();
+        theater.addAuditorium();
         theaters.add(theater);
     }
 
     private static void initAdvertisements() {
         System.out.println("Initializing advertisements");
-
         advertisements.add(new Advertisement("Drink Pepsi"));
         advertisements.add(new Advertisement("Buy Candy"));
         advertisements.add(new Advertisement("Shop at Target"));
@@ -102,31 +110,27 @@ public class Datastore {
     private static void initMovies() {
         System.out.println("Initializing movies");
 
-        movies.add(new Movie.Builder()
-                .withId(1L)
-                .withTitle("Top Gun")
-                .withDescription("Fighter pilot Maverick flies a jet. Goose dies.")
-                .withRating(Rating.PG)
-                .withReleaseDate("1986-05-16")
-                .withRunningTimeMinutes(110)
-                .addActor(getActorById(1L))
-                .addActor(getActorById(2L))
-                .addGenre(Genre.ACTION)
-                .addGenre(Genre.DRAMA)
-                .build());
+        Movie movie;
 
-        movies.add(new Movie.Builder()
-                .withId(2L)
-                .withTitle("This Is Spinal Tap")
-                .withDescription("Spinal Tap, is chronicled by film director Marty DiBergi.")
-                .withRating(Rating.R)
-                .withReleaseDate("1984-03-02")
-                .withRunningTimeMinutes(84)
-                .addActor(getActorById(3L))
-                .addActor(getActorById(4L))
-                .addGenre(Genre.COMEDY)
-                .addGenre(Genre.DOCUMENTARY)
-                .build());
+        movie = new Movie(1L, "Top Gun", PG, "1986-05-16", (60 + 50));
+        movie.addActor(1);
+        movie.addActor(2);
+        movies.add(movie);
+
+        movie = new Movie(2L, "This Is Spinal Tap", R, "1984-03-02", 84);
+        movie.addActor(3);
+        movie.addActor(4);
+        movies.add(movie);
+
+        movie = new Movie(3L, "Halloween", R, "1978-10-05", 91);
+        movie.addActor(5);
+        movie.addActor(6);
+        movies.add(movie);
+
+        movie = new Movie(4L, "Escape from New York", R, "1981-07-10", 99);
+        movie.addActor(6);
+        movie.addActor(7);
+        movies.add(movie);
     }
 
     public static List<Showing> getShowings() {
@@ -148,7 +152,19 @@ public class Datastore {
     public static List<Theater> getTheaters() {
         return theaters;
     }
-
+    /**
+     * Retrieves a {@code Movie} object from the list of movies based on the specified ID.
+     *
+     * <p>This method iterates through the collection of {@code Movie} objects and returns the first
+     * instance whose primary key matches the provided ID. If no match is found, it returns {@code null}.
+     * </p>
+     *
+     * @param id the primary key of the movie to be retrieved
+     * @return the {@code Movie} object with the specified ID, or {@code null} if no such movie exists
+     * @author Ildar Sadykov
+     * @author Diane Mathew (dmm7029@psu.edu)
+     */
+    // TODO: Create JavaDoc for getMovieById method
     public static Movie getMovieById(long id) {
         for (Movie movie : movies) {
             if (movie.getPrimaryKey() == id) {
@@ -157,7 +173,19 @@ public class Datastore {
         }
         return null;
     }
-
+    /**
+     * Retrieves an {@code Actor} object from the list of actors based on the specified ID.
+     *
+     * <p>This method iterates through the collection of {@code Actor} objects and returns the first
+     * instance whose primary key matches the provided ID. If no match is found, it returns {@code null}.
+     * </p>
+     *
+     * @param id the primary key of the actor to be retrieved
+     * @return the {@code Actor} object with the specified ID, or {@code null} if no such actor exists
+     * @author Ildar Sadaykov
+     * @author Diane Mathew (dmm7029@psu.edu)
+     */
+    // TODO: Create JavaDoc for getActorById method
     public static Actor getActorById(long id) {
         for (Actor actor : actors) {
             if (actor.getPrimaryKey() == id) {
@@ -171,6 +199,15 @@ public class Datastore {
         for (Auditorium auditorium : auditoriums) {
             if (auditorium.getPrimaryKey() == id) {
                 return auditorium;
+            }
+        }
+        return null;
+    }
+
+    public static Theater getTheaterById(long id) {
+        for (Theater theater : theaters) {
+            if (theater.getPrimaryKey() == id) {
+                return theater;
             }
         }
         return null;
@@ -195,7 +232,6 @@ public class Datastore {
         }
         return searchResults;
     }
-
     public static List<Movie> searchMoviesByTitle(String text) {
         List<Movie> searchResults = new ArrayList<>();
         for (Movie movie : movies) {
@@ -204,11 +240,13 @@ public class Datastore {
             }
         }
         return searchResults;
-    }
 
+    }
     public static List<Actor> searchActorsByName(String text) {
         List<Actor> searchResults = new ArrayList<>();
         String searchTextLower = text.toLowerCase();
+
+
         for (Actor actor : actors) {
             String fullName = actor.getFirstName() + " " + actor.getLastName();
             if (fullName.toLowerCase().contains(searchTextLower)) {

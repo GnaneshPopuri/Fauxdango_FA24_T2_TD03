@@ -23,11 +23,17 @@ public class IOHelper {
         return keyboard.nextLine();
     }
     /**
-     * Reads a double from user input.
+     * Prompts the user to input a double value and validates the input.
      *
-     * @return the double value entered by the user
-     * @throws NumberFormatException if the user enters an invalid double
-     * @author Joshua Waldron (Jsw5796@psu.edu)
+     * <p>This method repeatedly prompts the user with the provided message until a valid double
+     * value is entered. The input is read from the keyboard and validated using a helper method.
+     * If the input cannot be parsed as a double, the user is prompted again.
+     * </p>
+     *
+     * @param prompt the message displayed to the user to request input
+     * @return the valid double value entered by the user
+     * @author Ildar Sadykov
+     * @author Diane Mathew (dmm7029@psu.edu)
      */
     public static double userInputDouble(String prompt) {
         Double parsedToDouble = null;
