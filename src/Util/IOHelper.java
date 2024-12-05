@@ -7,25 +7,19 @@ import java.util.Scanner;
 public class IOHelper {
     private static final Scanner keyboard = Console.keyboard;
 
-    public static String readStringFromKeyboard(String prompt) {
-        System.out.print(prompt + ": ");
+    private static IOHelper instance;
 
-        return keyboard.nextLine();
+    private IOHelper() {}
+
+    public static IOHelper getInstance() {
+        if (instance == null) {
+            instance = new IOHelper();
+        }
+        return instance;
     }
 
-    public static String readNonBlankStringFromKeyboard(String prompt) {
-        String nonblankString;
-
-        while (true) {
-            nonblankString = readStringFromKeyboard(prompt);
-            if (nonblankString.trim().isEmpty()) {
-                System.out.println();
-                System.out.println("Cannot be blank");
-            } else {
-                break;
-            }
-        }
-
-        return nonblankString;
+    public String readStringFromKeyboard(String prompt) {
+        System.out.print(prompt + ": ");
+        return keyboard.nextLine();
     }
 }

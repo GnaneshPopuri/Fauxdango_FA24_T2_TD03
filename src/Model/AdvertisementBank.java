@@ -1,7 +1,6 @@
 package Model;
 
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class AdvertisementBank {
     private final List<Advertisement> ads = Datastore.getAllAdvertisements();
@@ -16,9 +15,4 @@ public class AdvertisementBank {
         return ads.get(currentAdIndex);
     }
 
-    public Advertisement getRandomAd() {
-        int randomIndex = ThreadLocalRandom.current().nextInt(ads.size());
-
-        return ads.get(randomIndex);
-    }
 }
