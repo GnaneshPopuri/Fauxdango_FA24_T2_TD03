@@ -6,3 +6,7 @@
 2024-12-02 22:44:53.145 [registerUser] INFO   - New user: Gnanesh Popuri (Gnaneshpopuri2027@gmail.com)
 2024-12-04 22:33:59.670 [isValidName] DEBUG  - Name does not match the pattern: jos1
 2024-12-04 22:38:02.735 [isValidName] DEBUG  - Name does not match the pattern: josh
+2024-12-04 22:46:11.335 [isValidName] DEBUG  - Name does not match the pattern: danny8
+2024-12-04 22:46:19.069 [isValidName] DEBUG  - Name does not match the pattern: max5
+2024-12-04 23:01:13.274 [isValidName] DEBUG  - Name does not match the pattern: prince55
+2024-12-04 23:01:16.589 [isValidName] DEBUG  - Name does not match the pattern: prince

@@ -71,9 +71,9 @@ public class Fauxdango {
                 System.out.println();
                 System.out.println("Welcome, " + firstName + " " + lastName + " (" + email + ")");
             } else if (chosen == choiceMainListAllMovies) {
-                Datastore.getMovies().forEach(System.out::println);
+                Datastore.getMovies().forEach(movie -> System.out.println(movie.toString()));
             } else if (chosen == choiceMainListAllTheaters) {
-                Datastore.getTheaters().forEach(System.out::println);
+                Datastore.getTheaters().forEach(theater -> System.out.println(theater.toString()));
             } else if (chosen == choiceMainListAllActors) {
                 Datastore.getActors().forEach(actor -> System.out.println(actor.toString()));
             } else if (chosen == choiceMainListAllShowings) {
