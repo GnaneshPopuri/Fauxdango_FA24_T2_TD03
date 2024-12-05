@@ -76,14 +76,14 @@ public class Datastore {
 
         Theater theater;
 
-        theater = new Theater(1L, "AMC Neshaminy 24", "660 Neshaminy Mall", "Bensalem", "PA", "19020", "(215) 396-8050");
-        theater.addAuditorium();
-        theater.addAuditorium();
+        theater = new Theater(1L, "AMC Neshaminy 24", "660 Neshaminy Mall", "Bensalem", "PA", "19020", "(215) 396-8050", "https://www.amctheatres.com/movie-theatres/philadelphia/amc-neshaminy-24");
+        theater.addAuditorium(1);
+        theater.addAuditorium(2);
         theaters.add(theater);
 
-        theater = new Theater(2L, "Regal UA Oxford Valley", "403 Middletown Blvd", "Langhorne", "PA", "19047", "(844) 462-7342");
-        theater.addAuditorium();
-        theater.addAuditorium();
+        theater = new Theater(2L, "Regal UA Oxford Valley", "403 Middletown Blvd", "Langhorne", "PA", "19047", "(844) 462-7342", "https://www.regmovies.com");
+        theater.addAuditorium(3);
+        theater.addAuditorium(4);
         theaters.add(theater);
     }
 
@@ -110,28 +110,37 @@ public class Datastore {
     private static void initMovies() {
         System.out.println("Initializing movies");
 
-        Movie movie;
+        Movie topGun = new Movie.Builder()
+                .withId(1L)
+                .withTitle("Top Gun")
+                .withDescription("Fighter pilot Maverick flies a jet. Goose dies.")
+                .withRating(Rating.PG)
+                .withReleaseDate("1986-05-16")
+                .withRunningTimeMinutes(110)
+                .addActor(getActorById(1L))
+                .addActor(getActorById(2L))
+                .addGenre(Genre.ACTION)
+                .addGenre(Genre.DRAMA)
+                .build();
 
-        movie = new Movie(1L, "Top Gun", PG, "1986-05-16", (60 + 50));
-        movie.addActor(1);
-        movie.addActor(2);
-        movies.add(movie);
+        Movie spinalTap = new Movie.Builder()
+                .withId(2L)
+                .withTitle("This Is Spinal Tap")
+                .withDescription("Spinal Tap, is chronicled by film director Marty DiBergi.")
+                .withRating(Rating.R)
+                .withReleaseDate("1984-03-02")
+                .withRunningTimeMinutes(84)
+                .addActor(getActorById(3L))
+                .addActor(getActorById(4L))
+                .addGenre(Genre.COMEDY)
+                .addGenre(Genre.DOCUMENTARY)
+                .build();
 
-        movie = new Movie(2L, "This Is Spinal Tap", R, "1984-03-02", 84);
-        movie.addActor(3);
-        movie.addActor(4);
-        movies.add(movie);
-
-        movie = new Movie(3L, "Halloween", R, "1978-10-05", 91);
-        movie.addActor(5);
-        movie.addActor(6);
-        movies.add(movie);
-
-        movie = new Movie(4L, "Escape from New York", R, "1981-07-10", 99);
-        movie.addActor(6);
-        movie.addActor(7);
-        movies.add(movie);
+        // Add the movies to the datastore
+        movies.add(topGun);
+        movies.add(spinalTap);
     }
+
 
     public static List<Showing> getShowings() {
         return showings;

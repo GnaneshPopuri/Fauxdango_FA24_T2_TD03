@@ -1,8 +1,8 @@
 package Controller;
 
 import Model.*;
+import Util.ValidationHelper;
 import View.ConsoleDisplay.AdvertisementDisplay;
-import View.ConsoleDisplay.UserDisplay;
 import edu.psu.consolemenu.Menu;
 import edu.psu.consolemenu.MenuChoice;
 import edu.psu.consolemenu.MenuDisplay;
@@ -37,28 +37,47 @@ public class Fauxdango {
         AdvertisementDisplay adDisplay = new AdvertisementDisplay(adBank);
         Scanner scanner = new Scanner(System.in);
 
-        User user;
         MenuChoice chosen = null;
         while (chosen != choiceMainExit) {
             adDisplay.displayNextAd();
             chosen = md.displayAndChoose();
 
             if (chosen == choiceMainRegister) {
-                user = UserDisplay.registerUser();
+                // Registration logic
+                System.out.print("Enter first name: ");
+                String firstName = scanner.nextLine().trim();
+                while (!ValidationHelper.isValidName(firstName)) {
+                    System.out.println("Invalid first name. It must start with a capital letter and contain only lowercase letters.");
+                    System.out.print("Enter first name: ");
+                    firstName = scanner.nextLine().trim();
+                }
+
+                System.out.print("Enter last name: ");
+                String lastName = scanner.nextLine().trim();
+                while (!ValidationHelper.isValidName(lastName)) {
+                    System.out.println("Invalid last name. It must start with a capital letter and contain only lowercase letters.");
+                    System.out.print("Enter last name: ");
+                    lastName = scanner.nextLine().trim();
+                }
+
+                System.out.print("Enter email: ");
+                String email = scanner.nextLine().trim();
+                while (!ValidationHelper.isValidEmail(email)) {
+                    System.out.println("Invalid email address. Please try again.");
+                    System.out.print("Enter email: ");
+                    email = scanner.nextLine().trim();
+                }
+
                 System.out.println();
-                System.out.println("Welcome, " + user);
+                System.out.println("Welcome, " + firstName + " " + lastName + " (" + email + ")");
             } else if (chosen == choiceMainListAllMovies) {
-                Datastore.getMovies().forEach(movie -> System.out.println(movie.toString()));
+                Datastore.getMovies().forEach(System.out::println);
             } else if (chosen == choiceMainListAllTheaters) {
-                Datastore.getTheaters().forEach(theater -> System.out.println(theater.toString()));
+                Datastore.getTheaters().forEach(System.out::println);
             } else if (chosen == choiceMainListAllActors) {
-                for (Actor actor : Datastore.getActors()) {
-                    System.out.println(actor.toString());
-                }
+                Datastore.getActors().forEach(actor -> System.out.println(actor.toString()));
             } else if (chosen == choiceMainListAllShowings) {
-                for (Showing showing : Datastore.getShowings()) {
-                    System.out.println(showing.toString());
-                }
+                Datastore.getShowings().forEach(showing -> System.out.println(showing.toString()));
             } else if (chosen == choiceSearchActorsByName) {
                 searchEntities("actor's name", scanner, Datastore::searchActorsByName);
             } else if (chosen == choiceSearchTheatersByName) {
@@ -78,7 +97,7 @@ public class Fauxdango {
         String searchTerm = scanner.nextLine().trim();
         while (searchTerm.isEmpty()) {
             System.out.println("Cannot be blank");
-            System.out.print("Enter " + searchType + ": ");
+            System.out.print("Enter part of the " + searchType + ": ");
             searchTerm = scanner.nextLine().trim();
         }
 
