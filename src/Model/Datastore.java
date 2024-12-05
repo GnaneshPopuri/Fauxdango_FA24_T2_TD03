@@ -152,7 +152,18 @@ public class Datastore {
     public static List<Theater> getTheaters() {
         return theaters;
     }
-
+    /**
+     * Retrieves a {@code Movie} object from the list of movies based on the specified ID.
+     *
+     * <p>This method iterates through the collection of {@code Movie} objects and returns the first
+     * instance whose primary key matches the provided ID. If no match is found, it returns {@code null}.
+     * </p>
+     *
+     * @param id the primary key of the movie to be retrieved
+     * @return the {@code Movie} object with the specified ID, or {@code null} if no such movie exists
+     * @author Ildar Sadykov
+     * @author Diane Mathew (dmm7029@psu.edu)
+     */
     // TODO: Create JavaDoc for getMovieById method
     public static Movie getMovieById(long id) {
         for (Movie movie : movies) {
@@ -162,7 +173,18 @@ public class Datastore {
         }
         return null;
     }
-
+    /**
+     * Retrieves an {@code Actor} object from the list of actors based on the specified ID.
+     *
+     * <p>This method iterates through the collection of {@code Actor} objects and returns the first
+     * instance whose primary key matches the provided ID. If no match is found, it returns {@code null}.
+     * </p>
+     *
+     * @param id the primary key of the actor to be retrieved
+     * @return the {@code Actor} object with the specified ID, or {@code null} if no such actor exists
+     * @author Ildar Sadaykov
+     * @author Diane Mathew (dmm7029@psu.edu)
+     */
     // TODO: Create JavaDoc for getActorById method
     public static Actor getActorById(long id) {
         for (Actor actor : actors) {
