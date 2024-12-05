@@ -256,7 +256,7 @@ public class Datastore {
         }
         return null;
     }
-
+    // TODO: Add tests to show that searchTheatersByName works correctly
     public static List<Theater> searchTheatersByName(String text) {
         List<Theater> searchResults = new ArrayList<>();
         String searchTextLower = text.toLowerCase();
@@ -267,6 +267,7 @@ public class Datastore {
         }
         return searchResults;
     }
+    // TODO: Add test to show searchMoviesByTitle works correctly
     public static List<Movie> searchMoviesByTitle(String text) {
         List<Movie> searchResults = new ArrayList<>();
         for (Movie movie : movies) {
@@ -277,6 +278,7 @@ public class Datastore {
         return searchResults;
 
     }
+    // TODO: Add test to show searchActorsByName works correctly
     public static List<Actor> searchActorsByName(String text) {
         List<Actor> searchResults = new ArrayList<>();
         String searchTextLower = text.toLowerCase();
@@ -290,7 +292,7 @@ public class Datastore {
         }
         return searchResults;
     }
-
+    // TODO: Add tests to show that searchTheatersByZipcode works correctly
     public static List<Theater> searchTheatersByZipcode(String text) {
         List<Theater> searchResults = new ArrayList<>();
         for (Theater theater : theaters) {

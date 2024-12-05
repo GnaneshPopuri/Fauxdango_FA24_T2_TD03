@@ -4,6 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.regex.Pattern;
+
+// TODO: Create a JavaDoc for the ValidationHelper class
 /**
  * A utility class providing various methods for validating input values and performing
  * type conversions. This class includes methods for parsing strings to numeric types,
@@ -62,6 +64,8 @@ public class ValidationHelper {
     public static boolean isValidYorN(String str) {
         return ("N".equals(str) || "Y".equals(str));
     }
+
+    // TODO: Create a JavaDoc for isIntInRange method
     /**
      * Validates whether an integer is within a specified range.
      *

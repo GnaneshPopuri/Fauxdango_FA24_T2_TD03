@@ -14,6 +14,8 @@ public class Movie extends DataStoreObj {
     private final List<Actor> actors;
     private final List<Genre> genres;
 
+    // TODO: Modify Movie so that it uses the Builder pattern
+
     private Movie(Builder builder) {
         super(builder.id);
         this.title = builder.title;
