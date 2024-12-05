@@ -9,9 +9,10 @@ public class Showing extends DataStoreObj {
     private final Rating rating;
     private final int year;
     private final LocalTime startTime;
-    private int id;
+    private final int id;
 
-    public Showing(String movie, String genre, int duration, Rating rating, int year, String startTime) {
+    public Showing(int id, String movie, String genre, int duration, Rating rating, int year, String startTime) {
+        this.id = id;
         this.movie = movie;
         this.genre = genre;
         this.duration = duration;

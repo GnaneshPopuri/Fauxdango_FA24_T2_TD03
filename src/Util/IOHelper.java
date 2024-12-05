@@ -7,13 +7,23 @@ import java.util.Scanner;
 public class IOHelper {
     private static final Scanner keyboard = Console.keyboard;
 
-    public static String readStringFromKeyboard(String prompt) {
-        System.out.print(prompt + ": ");
+    private static IOHelper instance;
 
+    private IOHelper() {}
+
+    public static IOHelper getInstance() {
+        if (instance == null) {
+            instance = new IOHelper();
+        }
+        return instance;
+    }
+
+    public String readStringFromKeyboard(String prompt) {
+        System.out.print(prompt + ": ");
         return keyboard.nextLine();
     }
 
-    public static String readNonBlankStringFromKeyboard(String prompt) {
+    public String readNonBlankStringFromKeyboard(String prompt) {
         String nonblankString;
 
         while (true) {

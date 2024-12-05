@@ -11,9 +11,11 @@ public class UserDisplay {
     public static User registerUser() {
         User user = new User();
 
-        user.setFirstName(IOHelper.readNonBlankStringFromKeyboard("Enter first name"));
-        user.setLastName(IOHelper.readNonBlankStringFromKeyboard("Enter last name"));
-        user.setEmailAddress(IOHelper.readNonBlankStringFromKeyboard("Enter email address"));
+        IOHelper ioHelper = IOHelper.getInstance();
+
+        user.setFirstName(ioHelper.readStringFromKeyboard("Enter First Name"));
+        user.setLastName(ioHelper.readStringFromKeyboard("Enter Last Name"));
+        user.setEmailAddress(ioHelper.readStringFromKeyboard("Enter Email address"));
 
         logger.info("New user: " + user);
 
