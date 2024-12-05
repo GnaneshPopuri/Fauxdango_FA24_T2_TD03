@@ -4,3 +4,5 @@
 2024-11-20 22:25:11.988 [registerUser] INFO   - New user: joshua waldron waldron (jsw5769@psu.edu)
 2024-11-20 22:29:37.069 [registerUser] INFO   - New user: Joshua  Waldron (jsw5796@psu.edu)
 2024-12-02 22:44:53.145 [registerUser] INFO   - New user: Gnanesh Popuri (Gnaneshpopuri2027@gmail.com)
+2024-12-04 22:33:59.670 [isValidName] DEBUG  - Name does not match the pattern: jos1
+2024-12-04 22:38:02.735 [isValidName] DEBUG  - Name does not match the pattern: josh
