@@ -69,16 +69,20 @@ public class Fauxdango {
                 }
 
                 System.out.println();
+                // TODO: Regex -- Add input validation
                 System.out.println("Welcome, " + firstName + " " + lastName + " (" + email + ")");
+
+                // TODO: Modify the movie and theater loops to use .forEach and lambda expressions
             } else if (chosen == choiceMainListAllMovies) {
-                Datastore.getMovies().forEach(System.out::println);
+                Datastore.getMovies().forEach(movie -> System.out.println(movie.toString()));
             } else if (chosen == choiceMainListAllTheaters) {
-                Datastore.getTheaters().forEach(System.out::println);
+                Datastore.getTheaters().forEach(theater -> System.out.println(theater.toString()));
             } else if (chosen == choiceMainListAllActors) {
                 Datastore.getActors().forEach(actor -> System.out.println(actor.toString()));
             } else if (chosen == choiceMainListAllShowings) {
                 Datastore.getShowings().forEach(showing -> System.out.println(showing.toString()));
             } else if (chosen == choiceSearchActorsByName) {
+                // TODO: Regex -- Add input validation
                 searchEntities("actor's name", scanner, Datastore::searchActorsByName);
             } else if (chosen == choiceSearchTheatersByName) {
                 searchEntities("theater's name", scanner, Datastore::searchTheatersByName);

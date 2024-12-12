@@ -4,6 +4,8 @@ import Model.Console;
 
 import java.util.Scanner;
 
+// TODO: Modify IOHelper class to be a singleton
+
 public class IOHelper {
     private static final Scanner keyboard = Console.keyboard;
 
@@ -22,6 +24,8 @@ public class IOHelper {
         System.out.print(prompt + ": ");
         return keyboard.nextLine();
     }
+
+    // TODO: Create a JavaDoc for the userInputDouble method
     /**
      * Prompts the user to input a double value and validates the input.
      *
