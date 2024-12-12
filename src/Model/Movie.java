@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Movie extends DataStoreObj {
     private final String title;
@@ -65,8 +66,13 @@ public class Movie extends DataStoreObj {
     @Override
     public String toString() {
         int runningTimeMinutes = (int) this.getRunningTime().toMinutes();
-        return String.format("%s (%s, %d) [%s min]", this.title, this.rating, this.releaseDate.getYear(), runningTimeMinutes);
+        String genreList = genres.stream()
+                .map(Genre::name)  // Using the enum's name method
+                .collect(Collectors.joining(", "));
+        return String.format("%s (%s, %d) [%s] {%d min}", this.title, this.rating, this.releaseDate.getYear(), genreList, runningTimeMinutes);
     }
+
+
 
     // Builder Class
     public static class Builder {

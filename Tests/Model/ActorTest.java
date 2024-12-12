@@ -29,7 +29,7 @@ public class ActorTest
                 , "Kelly McGillis (1957-07-09)"
                 , "Michael McKean (1947-10-17)"
                 , "Christopher Guest (1948-02-05)"
-                , "Jaimie Lee Curtis (1958-11-22)"
+                , "Jamie Lee Curtis (1958-11-22)"
                 , "Donald Pleasence (1919-10-05)"
                 , "Kurt Russell (1951-03-17)"
         };
