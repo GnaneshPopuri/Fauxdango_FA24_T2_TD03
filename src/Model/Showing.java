@@ -1,6 +1,7 @@
 package Model;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Showing extends DataStoreObj {
     private final String movie;
@@ -27,8 +28,10 @@ public class Showing extends DataStoreObj {
 
     @Override
     public String toString() {
+        String endTimeFormatted = startTime.plusMinutes(duration).format(DateTimeFormatter.ofPattern("HH:mm"));
         return String.format("%s (%s, %d) [%s] {%d min} {%s-%s}",
                 movie, rating, year, genre, duration,
-                startTime, startTime.plusMinutes(duration));
+                startTime.format(DateTimeFormatter.ofPattern("HH:mm")), endTimeFormatted);
     }
+
 }

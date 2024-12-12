@@ -61,15 +61,23 @@ public class Datastore {
     private static void initShowings() {
         System.out.println("Initializing showings");
 
-        showings.add(new Showing(1,"Top Gun", "ACTION, DRAMA", 110, PG, 1986, "13:00"));
-        showings.add(new Showing(2,"Escape from New York", "ACTION", 99, R, 1981, "16:00"));
-        showings.add(new Showing(3,"Halloween", "HORROR", 91, R, 1978, "18:00"));
-        showings.add(new Showing(4,"Top Gun", "ACTION, DRAMA", 110, PG, 1986, "17:30"));
-        showings.add(new Showing(5,"Escape from New York", "ACTION", 99, R, 1981, "19:15"));
-        showings.add(new Showing(6,"Spinal Tap", "COMEDY, DOCUMENTARY", 84, R, 1984, "10:00"));
-        showings.add(new Showing(7,"Spinal Tap", "COMEDY, DOCUMENTARY", 84, R, 1984, "12:45"));
-        showings.add(new Showing(8,"Halloween", "HORROR", 91, R, 1978, "23:00"));
+        showings.add(new Showing(1, "Top Gun", "ACTION, DRAMA", 110, Rating.PG, 1986, "13:00"));
+        showings.add(new Showing(2, "Escape from New York", "ACTION", 99, Rating.R, 1981, "16:00"));
+        showings.add(new Showing(3, "Halloween", "HORROR", 91, Rating.R, 1978, "18:00"));
+        showings.add(new Showing(4, "Top Gun", "ACTION, DRAMA", 110, Rating.PG, 1986, "17:30"));
+        showings.add(new Showing(5, "Escape from New York", "ACTION", 99, Rating.R, 1981, "19:15"));
+        showings.add(new Showing(6, "This Is Spinal Tap", "COMEDY, DOCUMENTARY", 84, Rating.R, 1984, "10:00"));
+        showings.add(new Showing(7, "This Is Spinal Tap", "COMEDY, DOCUMENTARY", 84, Rating.R, 1984, "12:45"));
+        showings.add(new Showing(8, "Halloween", "HORROR", 91, Rating.R, 1978, "23:00"));
     }
+
+    public static Showing getShowingById(long id) {
+        return showings.stream()
+                .filter(showing -> showing.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
 
     private static void initTheaters() {
         System.out.println("Initializing theaters");
@@ -249,14 +257,9 @@ public class Datastore {
         return null;
     }
 
-    public static Showing getShowingById(long id) {
-        for (Showing showing : showings) {
-            if (showing.getId() == id) {
-                return showing;
-            }
-        }
-        return null;
-    }
+
+
+
     // TODO: Add tests to show that searchTheatersByName works correctly
     public static List<Theater> searchTheatersByName(String text) {
         List<Theater> searchResults = new ArrayList<>();
