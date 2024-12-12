@@ -49,13 +49,16 @@ public class Datastore {
 
         Auditorium auditorium1 = new Auditorium(1);
         Auditorium auditorium2 = new Auditorium(2);
-        Auditorium auditorium3 = new Auditorium(3);
-        Auditorium auditorium4 = new Auditorium(4);
+
+        // Add showings to the auditoriums
+        auditorium1.addShowing(getShowingById(1));
+        auditorium1.addShowing(getShowingById(2));
+
+        auditorium2.addShowing(getShowingById(3));
+        auditorium2.addShowing(getShowingById(4));
 
         auditoriums.add(auditorium1);
         auditoriums.add(auditorium2);
-        auditoriums.add(auditorium3);
-        auditoriums.add(auditorium4);
     }
 
     private static void initShowings() {
@@ -72,11 +75,13 @@ public class Datastore {
     }
 
     public static Showing getShowingById(long id) {
-        for (Showing showing : showings)
-    { if (showing.getId() == id)
-    { return showing;
+        for (Showing showing : showings) {
+            if (showing.getId() == id) {
+                return showing;
+            }
+        }
+        return null;
     }
-    } return null; }
 
 
     private static void initTheaters() {
@@ -238,15 +243,9 @@ public class Datastore {
         return null;
     }
 
-    public static Auditorium getAuditoriumById(long id) {
-        for (Auditorium auditorium : auditoriums) {
-            if (auditorium.getAuditoriumNumber() == id) {
-                return auditorium;
-            }
-        }
-        return null;
-    }
-
+    public static Auditorium getAuditoriumById(long id) { for (Auditorium auditorium : auditoriums) { if (auditorium.getAuditoriumNumber() == id)
+    { return auditorium; }
+    } return null; }
 
     public static Theater getTheaterById(long id) {
         for (Theater theater : theaters) {
