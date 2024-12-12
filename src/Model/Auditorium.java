@@ -12,8 +12,16 @@ public class Auditorium extends DataStoreObj {
         this.showings = new ArrayList<>();
     }
 
+    public int getAuditoriumNumber() {
+        return auditoriumNumber;
+    }
+
     public List<Showing> getShowings() {
         return showings;
+    }
+
+    public void addShowing(Showing showing) {
+        this.showings.add(showing);
     }
 
     @Override

@@ -49,14 +49,18 @@ public class Datastore {
 
         Auditorium auditorium1 = new Auditorium(1);
         Auditorium auditorium2 = new Auditorium(2);
-        Auditorium auditorium3 = new Auditorium(3);
-        Auditorium auditorium4 = new Auditorium(4);
+
+        // Add showings to auditoriums
+        auditorium1.addShowing(getShowingById(1));
+        auditorium1.addShowing(getShowingById(2));
+
+        auditorium2.addShowing(getShowingById(3));
+        auditorium2.addShowing(getShowingById(4));
 
         auditoriums.add(auditorium1);
         auditoriums.add(auditorium2);
-        auditoriums.add(auditorium3);
-        auditoriums.add(auditorium4);
     }
+
 
     private static void initShowings() {
         System.out.println("Initializing showings");
@@ -72,11 +76,11 @@ public class Datastore {
     }
 
     public static Showing getShowingById(long id) {
-        return showings.stream()
-                .filter(showing -> showing.getId() == id)
-                .findFirst()
-                .orElse(null);
+        for (Showing showing : showings)
+    { if (showing.getId() == id)
+    { return showing;
     }
+    } return null; }
 
 
     private static void initTheaters() {
@@ -241,7 +245,7 @@ public class Datastore {
 
     public static Auditorium getAuditoriumById(long id) {
         for (Auditorium auditorium : auditoriums) {
-            if (auditorium.getPrimaryKey() == id) {
+            if (auditorium.getAuditoriumNumber() == id) {
                 return auditorium;
             }
         }
