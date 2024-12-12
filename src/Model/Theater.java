@@ -26,6 +26,10 @@ public class Theater extends DataStoreObj {
         this.auditoriums = new ArrayList<>();
     }
 
+    public Long getId() {
+        return super.getPrimaryKey();
+    }
+
     public String getName() {
         return this.name;
     }

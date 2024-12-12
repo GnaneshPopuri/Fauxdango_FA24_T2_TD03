@@ -49,18 +49,14 @@ public class Datastore {
 
         Auditorium auditorium1 = new Auditorium(1);
         Auditorium auditorium2 = new Auditorium(2);
-
-        // Add showings to auditoriums
-        auditorium1.addShowing(getShowingById(1));
-        auditorium1.addShowing(getShowingById(2));
-
-        auditorium2.addShowing(getShowingById(3));
-        auditorium2.addShowing(getShowingById(4));
+        Auditorium auditorium3 = new Auditorium(3);
+        Auditorium auditorium4 = new Auditorium(4);
 
         auditoriums.add(auditorium1);
         auditoriums.add(auditorium2);
+        auditoriums.add(auditorium3);
+        auditoriums.add(auditorium4);
     }
-
 
     private static void initShowings() {
         System.out.println("Initializing showings");
@@ -86,17 +82,16 @@ public class Datastore {
     private static void initTheaters() {
         System.out.println("Initializing theaters");
 
-        Theater theater;
+        Theater theater1 = new Theater(1L, "AMC Neshaminy 24", "660 Neshaminy Mall", "Bensalem", "PA", "19020", "(215) 396-8050", "https://www.amctheatres.com/movie-theatres/philadelphia/amc-neshaminy-24");
+        theater1.addAuditorium(1);
+        theater1.addAuditorium(2);
 
-        theater = new Theater(1L, "AMC Neshaminy 24", "660 Neshaminy Mall", "Bensalem", "PA", "19020", "(215) 396-8050", "https://www.amctheatres.com/movie-theatres/philadelphia/amc-neshaminy-24");
-        theater.addAuditorium(1);
-        theater.addAuditorium(2);
-        theaters.add(theater);
+        Theater theater2 = new Theater(2L, "Regal UA Oxford Valley", "403 Middletown Blvd", "Langhorne", "PA", "19047", "(844) 462-7342", "https://www.regmovies.com");
+        theater2.addAuditorium(3);
+        theater2.addAuditorium(4);
 
-        theater = new Theater(2L, "Regal UA Oxford Valley", "403 Middletown Blvd", "Langhorne", "PA", "19047", "(844) 462-7342", "https://www.regmovies.com");
-        theater.addAuditorium(3);
-        theater.addAuditorium(4);
-        theaters.add(theater);
+        theaters.add(theater1);
+        theaters.add(theater2);
     }
 
     private static void initAdvertisements() {
@@ -252,14 +247,16 @@ public class Datastore {
         return null;
     }
 
+
     public static Theater getTheaterById(long id) {
         for (Theater theater : theaters) {
-            if (theater.getPrimaryKey() == id) {
+            if (theater.getId() == id) {
                 return theater;
             }
         }
         return null;
     }
+
 
 
 
